@@ -1,0 +1,8 @@
+export { ActivitySection } from './activity-section'
+export { AdminSectionView } from './admin-section'
+export { NotificationsSection } from './notifications-section'
+export { OverviewSection } from './overview-section'
+export { RewardsSection } from './rewards-section'
+export { SettingsSection } from './settings-section'
+export { TasksSection } from './tasks-section'
+export { WinsSection } from './wins-section'

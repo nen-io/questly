@@ -1,0 +1,58 @@
+import { Router } from 'express';
+
+import { authenticate, requireRole } from '../../auth/middleware';
+import { registerDeleteCategoryRoute } from './delete-category';
+import { registerDeletePlayerRoute } from './delete-player';
+import { registerDeleteRewardRoute } from './delete-reward';
+import { registerDeleteTaskRoute } from './delete-task';
+import { registerGetBootstrapRoute } from './get-bootstrap';
+import { registerGetCategoriesRoute } from './get-categories';
+import { registerGetOnboardingBootstrapRoute } from './get-onboarding-bootstrap';
+import { registerGetPlayersRoute } from './get-players';
+import { registerGetAdminRewardsRoute } from './get-rewards';
+import { registerGetSettingsRoute } from './get-settings';
+import { registerGetAdminTasksRoute } from './get-tasks';
+import { registerGetThemesRoute } from './get-themes';
+import { registerPatchCategoryRoute } from './patch-category';
+import { registerPatchPlayerPasswordRoute } from './patch-player-password';
+import { registerPatchRewardRoute } from './patch-reward';
+import { registerPatchTaskRoute } from './patch-task';
+import { registerPostCategoriesRoute } from './post-categories';
+import { registerPostLoginBackgroundMediaRoute } from './post-login-background-media';
+import { registerPostOnboardingLaunchRoute } from './post-onboarding-launch';
+import { registerPostPlayersRoute } from './post-players';
+import { registerPostRewardRoute } from './post-reward';
+import { registerPostTaskRoute } from './post-task';
+import { registerPutOnboardingStateRoute } from './put-onboarding-state';
+import { registerPutPlayerBalancesRoute } from './put-player-balances';
+import { registerPutSettingsRoute } from './put-settings';
+
+export const adminRouter = Router();
+
+adminRouter.use(authenticate, requireRole('admin'));
+
+registerGetBootstrapRoute(adminRouter);
+registerGetOnboardingBootstrapRoute(adminRouter);
+registerGetAdminTasksRoute(adminRouter);
+registerGetAdminRewardsRoute(adminRouter);
+registerGetThemesRoute(adminRouter);
+registerPutOnboardingStateRoute(adminRouter);
+registerPostOnboardingLaunchRoute(adminRouter);
+registerGetPlayersRoute(adminRouter);
+registerPostPlayersRoute(adminRouter);
+registerDeletePlayerRoute(adminRouter);
+registerPatchPlayerPasswordRoute(adminRouter);
+registerPutPlayerBalancesRoute(adminRouter);
+registerGetCategoriesRoute(adminRouter);
+registerPostCategoriesRoute(adminRouter);
+registerPatchCategoryRoute(adminRouter);
+registerDeleteCategoryRoute(adminRouter);
+registerGetSettingsRoute(adminRouter);
+registerPostLoginBackgroundMediaRoute(adminRouter);
+registerPutSettingsRoute(adminRouter);
+registerPostTaskRoute(adminRouter);
+registerPatchTaskRoute(adminRouter);
+registerDeleteTaskRoute(adminRouter);
+registerPostRewardRoute(adminRouter);
+registerPatchRewardRoute(adminRouter);
+registerDeleteRewardRoute(adminRouter);

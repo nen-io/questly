@@ -1,0 +1,42 @@
+# OS files
+.DS_Store
+
+# Local environment files
+.env
+.env.*
+!.env.example
+**/.env
+**/.env.*
+!**/.env.example
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Package managers and dependencies
+.pnpm-store/
+**/.pnpm-store/
+**/node_modules/
+
+# Build outputs and coverage
+**/dist/
+**/dist-ssr/
+**/coverage/
+**/*.tsbuildinfo
+
+# Generated JS mirrors next to shared TypeScript sources
+/shared/contracts/*.js
+/shared/font-presets/*.js
+/shared/utils/*.js
+
+# Local runtime data
+/db/
+/private_uploads/
+/api/private_uploads/
+
+# Local tooling output
+/.playwright-cli/

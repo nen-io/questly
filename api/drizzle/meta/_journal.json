@@ -1,0 +1,41 @@
+{
+  "version": "5",
+  "dialect": "pg",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1778000000000,
+      "tag": "0000_platform_init",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1778200000000,
+      "tag": "0001_onboarding_state",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1778300000000,
+      "tag": "0002_onboarding_identity_default",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1778400000000,
+      "tag": "0003_remove_login_panel_content",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "5",
+      "when": 1778500000000,
+      "tag": "0004_task_run_media_jobs",
+      "breakpoints": true
+    }
+  ]
+}

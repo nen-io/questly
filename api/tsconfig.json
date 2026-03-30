@@ -1,0 +1,24 @@
+{
+    "compilerOptions": {
+        "target": "es2016",
+        "module": "commonjs",
+        "resolveJsonModule": true,
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+        "strict": true,
+        "skipLibCheck": true,
+        "rootDir": "..",
+        "outDir": "./dist"
+    },
+    "include": [
+        "src/index.ts",
+        "src/auth/**/*.ts",
+        "src/db/**/*.ts",
+        "src/lib/**/*.ts",
+        "src/routes/**/*.ts",
+        "src/router.ts",
+        "src/types/**/*.ts",
+        "src/types/**/*.d.ts",
+        "../shared/**/*.ts"
+    ]
+}

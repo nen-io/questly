@@ -1,0 +1,51 @@
+{
+  "name": "questly-api",
+  "version": "1.0.0",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "node -e \"require('fs').rmSync('dist', { recursive: true, force: true })\" && tsgo",
+    "start": "node dist/api/src/index.js",
+    "generate": "drizzle-kit generate:pg",
+    "db:migrate": "node scripts/run-db-script.cjs migrate",
+    "db:seed": "node scripts/run-db-script.cjs seed",
+    "db:seed:skip-onboarding": "node scripts/run-db-script.cjs seed-skip-onboarding",
+    "migrate:prod": "node dist/api/src/db/migrate.js",
+    "seed:prod": "node dist/api/src/db/seed.js"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.1017.0",
+    "@aws-sdk/s3-request-presigner": "^3.1017.0",
+    "@types/jsonwebtoken": "^9.0.10",
+    "bcryptjs": "^3.0.3",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "drizzle-orm": "^0.29.3",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
+    "multer": "^2.0.2",
+    "nodemailer": "^7.0.13",
+    "pg": "^8.11.3",
+    "postgres": "^3.4.3",
+    "sanitize-html": "^2.17.0",
+    "sharp": "^0.34.5",
+    "ws": "^8.20.0",
+    "zod": "^4.1.12"
+  },
+  "devDependencies": {
+    "@types/cookie-parser": "^1.4.10",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.6",
+    "@types/multer": "^2.0.0",
+    "@types/node": "^20.11.5",
+    "@types/nodemailer": "^6.4.17",
+    "@types/pg": "^8.11.0",
+    "@types/sanitize-html": "^2.16.0",
+    "@types/ws": "^8.18.1",
+    "@typescript/native-preview": "7.0.0-dev.20260327.2",
+    "drizzle-kit": "^0.20.13",
+    "tsx": "^4.7.0",
+    "typescript": "^5.3.3"
+  }
+}
