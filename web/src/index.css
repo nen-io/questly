@@ -30,6 +30,19 @@
   --heroTo: #f4d7ff;
   --surface: #fff7f2;
   --surfaceAlt: #fff1eb;
+  --overlaySurface: rgba(255, 255, 255, 0.74);
+  --overlaySurfaceStrong: rgba(255, 255, 255, 0.88);
+  --overlaySurfaceSoft: rgba(255, 255, 255, 0.64);
+  --overlayBorder: rgba(255, 255, 255, 0.78);
+  --overlayForeground: #2f1f27;
+  --overlayMuted: #5f4752;
+  --overlaySoft: #755c67;
+  --overlayIconSurface: rgba(255, 255, 255, 0.84);
+  --overlayInputSurface: rgba(255, 255, 255, 0.9);
+  --overlayTrack: rgba(255, 255, 255, 0.82);
+  --overlayHighlight: rgba(255, 255, 255, 0.82);
+  --overlayShadow: rgba(15, 23, 42, 0.08);
+  --overlayShadowStrong: rgba(15, 23, 42, 0.15);
   --font-emoji: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", "Twemoji Mozilla", sans-serif;
 }
 
@@ -154,6 +167,76 @@
     pointer-events: none;
   }
 
+  .theme-shell-panel {
+    border: 1px solid var(--overlayBorder) !important;
+    background: linear-gradient(135deg, var(--overlaySurfaceStrong), var(--overlaySurface)) !important;
+    box-shadow:
+      0 20px 60px var(--overlayShadowStrong),
+      0 40px 120px var(--overlayShadow) !important;
+    color: var(--overlayForeground) !important;
+    backdrop-filter: blur(18px) !important;
+  }
+
+  .theme-shell-card {
+    border: 1px solid var(--overlayBorder) !important;
+    background: var(--overlaySurface) !important;
+    box-shadow: 0 12px 30px var(--overlayShadow) !important;
+    color: var(--overlayForeground) !important;
+    backdrop-filter: blur(14px) !important;
+  }
+
+  .theme-shell-card-strong {
+    border: 1px solid var(--overlayBorder) !important;
+    background: var(--overlaySurfaceStrong) !important;
+    box-shadow: 0 16px 36px var(--overlayShadowStrong) !important;
+    color: var(--overlayForeground) !important;
+    backdrop-filter: blur(16px) !important;
+  }
+
+  .theme-shell-pill {
+    border: 1px solid var(--overlayBorder) !important;
+    background: var(--overlaySurfaceStrong) !important;
+    box-shadow: 0 8px 20px var(--overlayShadow) !important;
+    color: var(--overlayForeground) !important;
+    backdrop-filter: blur(12px) !important;
+  }
+
+  .theme-shell-chip {
+    border: 1px solid var(--overlayBorder) !important;
+    background: var(--overlaySurfaceSoft) !important;
+    box-shadow: 0 8px 18px var(--overlayShadow) !important;
+    color: var(--overlayMuted) !important;
+    backdrop-filter: blur(10px) !important;
+  }
+
+  .theme-shell-icon {
+    border: 1px solid var(--overlayBorder) !important;
+    background: var(--overlayIconSurface) !important;
+    box-shadow:
+      inset 0 1px 0 var(--overlayHighlight),
+      0 8px 20px var(--overlayShadow) !important;
+    color: var(--overlayForeground) !important;
+  }
+
+  .theme-shell-track {
+    background: var(--overlayTrack) !important;
+    box-shadow: inset 0 1px 2px var(--overlayShadow) !important;
+  }
+
+  .theme-shell-input {
+    border-color: var(--overlayBorder) !important;
+    background: var(--overlayInputSurface) !important;
+    color: var(--overlayForeground) !important;
+  }
+
+  .theme-shell-muted {
+    color: var(--overlayMuted) !important;
+  }
+
+  .theme-shell-soft {
+    color: var(--overlaySoft) !important;
+  }
+
   .theme-atmosphere > div {
     position: absolute;
     inset: 0;
@@ -164,15 +247,15 @@
       radial-gradient(circle at 18% 18%, color-mix(in srgb, var(--primary) 14%, transparent), transparent 28%),
       radial-gradient(circle at 82% 22%, color-mix(in srgb, var(--accent) 14%, transparent), transparent 28%),
       radial-gradient(circle at 52% 78%, color-mix(in srgb, var(--secondary) 20%, transparent), transparent 36%);
-    opacity: 0.95;
+    opacity: var(--theme-atmosphere-mesh-opacity, 0.95);
     animation: theme-drift 26s linear infinite;
   }
 
   .theme-atmosphere__orb {
     inset: auto;
     border-radius: 9999px;
-    filter: blur(22px);
-    opacity: 0.34;
+    filter: blur(var(--theme-atmosphere-orb-blur, 22px));
+    opacity: var(--theme-atmosphere-orb-opacity, 0.34);
     mix-blend-mode: screen;
   }
 
@@ -203,9 +286,56 @@
     animation: theme-float-c 20s ease-in-out infinite;
   }
 
+  .theme-atmosphere__particles {
+    opacity: var(--theme-atmosphere-particles-opacity, 0.92);
+    mask-image: radial-gradient(circle at center, black 72%, transparent 100%);
+  }
+
+  .theme-atmosphere__particle {
+    position: absolute;
+    border-radius: 9999px;
+    opacity: var(--theme-particle-opacity);
+    animation: theme-particle-float 22s ease-in-out infinite;
+    will-change: transform, opacity;
+  }
+
+  .theme-atmosphere__particle::before,
+  .theme-atmosphere__particle::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+  }
+
+  .theme-atmosphere__particle::before {
+    background: radial-gradient(circle, color-mix(in srgb, var(--theme-particle-color) var(--theme-atmosphere-particle-shell-color, 86%), white) 0%, color-mix(in srgb, var(--theme-particle-color) var(--theme-atmosphere-particle-fade-color, 42%), transparent) 52%, transparent 76%);
+    box-shadow:
+      0 0 0 1px color-mix(in srgb, var(--theme-particle-color) var(--theme-atmosphere-particle-border-alpha, 8%), transparent),
+      0 0 var(--theme-atmosphere-particle-glow-blur, 1.4rem) color-mix(in srgb, var(--theme-particle-color) var(--theme-atmosphere-particle-glow-alpha, 14%), transparent);
+  }
+
+  .theme-atmosphere__particle::after {
+    inset: 26%;
+    background: color-mix(in srgb, white var(--theme-atmosphere-particle-core-white, 76%), var(--theme-particle-color));
+    opacity: var(--theme-atmosphere-particle-core-opacity, 0.82);
+    transform: scale(var(--theme-atmosphere-particle-core-scale, 0.82));
+  }
+
+  .theme-atmosphere__particle--primary {
+    --theme-particle-color: var(--primary);
+  }
+
+  .theme-atmosphere__particle--accent {
+    --theme-particle-color: var(--accent);
+  }
+
+  .theme-atmosphere__particle--secondary {
+    --theme-particle-color: var(--secondary);
+  }
+
   .theme-atmosphere__pattern,
   .theme-atmosphere__accent {
-    opacity: 0.34;
+    opacity: var(--theme-atmosphere-pattern-opacity, 0.34);
   }
 
   .theme-atmosphere__pattern {
@@ -218,6 +348,7 @@
 
   .theme-atmosphere__accent {
     inset: -12%;
+    opacity: var(--theme-atmosphere-accent-opacity, var(--theme-atmosphere-pattern-opacity, 0.34));
     animation: theme-sway 28s ease-in-out infinite;
   }
 
@@ -349,6 +480,21 @@
     }
     50% {
       transform: translate3d(-1.5%, 1.5%, 0);
+    }
+  }
+
+  @keyframes theme-particle-float {
+    0% {
+      transform: translate3d(0, 0, 0) scale(0.92);
+      opacity: calc(var(--theme-particle-opacity) * 0.72);
+    }
+    50% {
+      transform: translate3d(calc(var(--theme-particle-drift-x) * 0.55), calc(var(--theme-particle-drift-y) * 0.55), 0) scale(1.04);
+      opacity: var(--theme-particle-opacity);
+    }
+    100% {
+      transform: translate3d(var(--theme-particle-drift-x), var(--theme-particle-drift-y), 0) scale(0.96);
+      opacity: calc(var(--theme-particle-opacity) * 0.8);
     }
   }
 

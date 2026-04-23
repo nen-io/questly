@@ -5,9 +5,11 @@
 .env
 .env.*
 !.env.example
+!.env.coolify.example
 **/.env
 **/.env.*
 !**/.env.example
+!**/.env.coolify.example
 
 # Logs
 *.log

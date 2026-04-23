@@ -66,11 +66,17 @@ export function LoginScreen({ publicConfig, preview = false }: LoginScreenProps)
       'radial-gradient(circle at bottom right, color-mix(in_srgb,var(--accent)_18%, white), transparent 32%)',
     ].join(','),
   }), [])
+  const atmosphereLayer = (
+    <ThemeAtmosphere
+      intensity={hasCustomBackdropMedia ? 'soft' : 'default'}
+      mediaAware={hasCustomBackdropMedia}
+      themeKey={publicConfig.theme.key}
+    />
+  )
 
   return (
     <>
       <main className={`relative isolate overflow-hidden bg-[var(--surface)] text-foreground ${shellClassName}`}>
-        {!hasCustomBackdropMedia ? <ThemeAtmosphere themeKey={publicConfig.theme.key} /> : null}
         {publicConfig.content.loginBackgroundImageUrl ? (
           <div
             aria-hidden="true"
@@ -90,7 +96,9 @@ export function LoginScreen({ publicConfig, preview = false }: LoginScreenProps)
             src={publicConfig.content.loginBackgroundVideoUrl}
           />
         ) : null}
+        {!hasCustomBackdropMedia ? atmosphereLayer : null}
         <div aria-hidden="true" className="absolute inset-0" style={backdropOverlay} />
+        {hasCustomBackdropMedia ? atmosphereLayer : null}
         <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,color-mix(in_srgb,var(--foreground)_7%,transparent)_1px,transparent_1px),linear-gradient(0deg,color-mix(in_srgb,var(--foreground)_7%,transparent)_1px,transparent_1px)] bg-[length:28px_28px] opacity-35" />
         <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_bottom,transparent_0%,rgba(255,255,255,0.12)_49%,transparent_51%,transparent_100%)] bg-[length:100%_6px] opacity-30" />
 
@@ -111,13 +119,13 @@ export function LoginScreen({ publicConfig, preview = false }: LoginScreenProps)
               initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 22 }}
               transition={{ duration: shouldReduceMotion ? 0 : 0.38, delay: shouldReduceMotion ? 0 : 0.08, ease: [0.22, 1, 0.36, 1] }}
             >
-              <Card className="rounded-[2rem] border-white/80 bg-[linear-gradient(180deg,rgba(255,255,255,0.92),rgba(255,255,255,0.78))] shadow-[0_20px_80px_rgba(15,23,42,0.10)] backdrop-blur">
+              <Card className="theme-shell-panel rounded-[2rem]">
                 <CardHeader className="space-y-3">
                   <div className="flex size-12 items-center justify-center rounded-2xl bg-primary/10 text-primary">
                     <LockKeyhole className="size-5" />
                   </div>
                   <CardTitle className="text-2xl">{preview ? 'Sign-in preview' : 'Sign in'}</CardTitle>
-                  <CardDescription>
+                  <CardDescription className="theme-shell-muted">
                     {preview
                       ? 'Live preview mode. This uses the real sign-in layout without attempting authentication.'
                       : publicConfig.setup.isLaunched
@@ -127,7 +135,7 @@ export function LoginScreen({ publicConfig, preview = false }: LoginScreenProps)
                 </CardHeader>
                 <CardContent className="space-y-5">
                   {!publicConfig.setup.isLaunched && !preview ? (
-                    <div className="rounded-2xl border border-border/70 bg-[var(--surface-alt)] px-4 py-3 text-sm text-muted-foreground">
+                    <div className="theme-shell-card rounded-2xl px-4 py-3 text-sm theme-shell-muted">
                       Player accounts remain locked until the realm is launched.
                     </div>
                   ) : null}

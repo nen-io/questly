@@ -40,7 +40,7 @@ export function PlayerStep({
           </Button>
         </div>
         <PlayerAccountsCard
-          className="border-white/80 bg-white/74 shadow-[0_12px_28px_rgba(83,31,52,0.06)]"
+          className="theme-shell-card"
           deletePlayerPending={deletePlayerPending}
           description="Players stay locked out until launch. If you need to start the roster over, remove the entry here."
           emptyMessage="No players yet. Create one to unlock Launch."

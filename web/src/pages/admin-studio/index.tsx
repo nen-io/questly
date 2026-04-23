@@ -668,14 +668,14 @@ export function AdminStudio({
       <Card className="overflow-hidden rounded-[1.75rem] border-border/70 bg-[linear-gradient(135deg,var(--hero-from),var(--hero-via),var(--hero-to))]">
         <CardHeader className="space-y-4">
           <div className="flex flex-wrap items-center gap-2">
-            <Badge className="rounded-full bg-white/75 px-4 py-1 text-foreground">
+            <Badge className="theme-shell-pill rounded-full px-4 py-1">
               Admin studio
             </Badge>
-            <Badge className="rounded-full bg-white/75 px-4 py-1 text-foreground">
+            <Badge className="theme-shell-pill rounded-full px-4 py-1">
               {bootstrap.settings.theme.name}
             </Badge>
             {!bootstrap.setup.isLaunched ? (
-              <Badge className="rounded-full bg-white/75 px-4 py-1 text-foreground">
+              <Badge className="theme-shell-pill rounded-full px-4 py-1">
                 Setup in progress
               </Badge>
             ) : null}
@@ -684,17 +684,17 @@ export function AdminStudio({
             <CardTitle className="text-3xl">
               Manage the platform without digging through tabs
             </CardTitle>
-            <CardDescription className="max-w-3xl text-base leading-7 text-muted-foreground">
+            <CardDescription className="theme-shell-muted max-w-3xl text-base leading-7">
               Players, categories, quests, rewards, and branding all live in one place. The dedicated onboarding shell handles first-run launch, while this studio stays available for direct editing at any time.
             </CardDescription>
           </div>
         </CardHeader>
         <CardContent className="px-8 flex gap-4 overflow-x-auto pb-1 md:grid md:grid-cols-4 md:overflow-visible md:pb-0">
           {studioStats.map((item) => (
-            <div key={item.label} className="min-w-[12rem] rounded-[1.5rem] border border-white/60 bg-white/70 p-4 md:min-w-0">
-              <p className="text-sm text-muted-foreground">{item.label}</p>
+            <div key={item.label} className="theme-shell-card min-w-[12rem] rounded-[1.5rem] p-4 md:min-w-0">
+              <p className="theme-shell-muted text-sm">{item.label}</p>
               <p className="mt-1 text-2xl font-semibold">{item.value}</p>
-              <p className="mt-1 text-sm text-muted-foreground">{item.detail}</p>
+              <p className="theme-shell-muted mt-1 text-sm">{item.detail}</p>
             </div>
           ))}
         </CardContent>

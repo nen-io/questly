@@ -28,7 +28,7 @@ export function ProgressRail({
         >
           <span
             aria-hidden="true"
-            className="pointer-events-none absolute top-3.5 h-1 rounded-full bg-white/80 shadow-[inset_0_1px_2px_rgba(83,31,52,0.08)]"
+            className="theme-shell-track pointer-events-none absolute top-3.5 h-1 rounded-full"
             style={{ left: trackInset, right: trackInset }}
           >
             <div
@@ -52,10 +52,10 @@ export function ProgressRail({
                   <span className="flex h-7 items-center justify-center">
                     <span
                       className={cn(
-                        'relative z-10 flex size-6 items-center justify-center rounded-full border-2 bg-white transition-colors duration-200',
+                        'relative z-10 flex size-6 items-center justify-center rounded-full border-2 transition-colors duration-200',
                         active && 'border-primary bg-primary shadow-[0_0_0_5px_color-mix(in_srgb,var(--primary)_14%,transparent)]',
                         !active && completed && 'border-primary/70 bg-primary/70',
-                        !active && !completed && 'border-white/90 bg-white',
+                        !active && !completed && 'border-[color:var(--overlayBorder)] bg-[color:var(--overlaySurfaceStrong)]',
                       )}
                     >
                       <span
@@ -70,10 +70,10 @@ export function ProgressRail({
                   <span
                     className={cn(
                       'retro-ui flex min-h-11 w-full items-center justify-center rounded-full border px-4 py-2 text-center text-sm transition-colors duration-200',
-                      active && 'border-primary bg-white text-foreground shadow-[0_8px_18px_rgba(83,31,52,0.08)]',
-                      !active && completed && 'border-primary/20 bg-primary/10 text-foreground/82 shadow-[0_8px_18px_rgba(83,31,52,0.05)]',
-                      !active && !completed && 'border-white/75 bg-white/70 text-foreground/66 shadow-[0_8px_18px_rgba(83,31,52,0.05)]',
-                      'group-hover:border-primary/55 group-hover:bg-white/90 group-hover:text-foreground group-focus-visible:border-primary group-focus-visible:ring-2 group-focus-visible:ring-primary/25',
+                      active && 'theme-shell-pill border-primary',
+                      !active && completed && 'border-primary/20 bg-primary/10 text-[color:var(--overlayForeground)] shadow-[0_8px_18px_var(--overlayShadow)]',
+                      !active && !completed && 'theme-shell-chip',
+                      'group-hover:border-primary/55 group-hover:text-[color:var(--overlayForeground)] group-focus-visible:border-primary group-focus-visible:ring-2 group-focus-visible:ring-primary/25',
                     )}
                   >
                     {index + 1}. {item.shortLabel}

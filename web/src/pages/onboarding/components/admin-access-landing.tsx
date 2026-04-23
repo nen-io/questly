@@ -44,7 +44,7 @@ export function AdminAccessLanding({ publicConfig }: { publicConfig: PublicConfi
       <div className="relative mx-auto flex min-h-screen max-w-7xl items-center px-4 py-8 sm:px-6 lg:px-8">
         <motion.section
           animate={{ opacity: 1, y: 0 }}
-          className="relative w-full overflow-hidden rounded-[2.25rem] border border-white/70 bg-[linear-gradient(135deg,rgba(255,255,255,0.86),rgba(255,255,255,0.72))] p-6 shadow-[0_20px_60px_rgba(83,31,52,0.14),0_40px_120px_rgba(83,31,52,0.12)] backdrop-blur sm:p-8 lg:p-10"
+          className="theme-shell-panel relative w-full overflow-hidden rounded-[2.25rem] p-6 sm:p-8 lg:p-10"
           initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 20 }}
           transition={{ duration: shouldReduceMotion ? 0 : 0.36, ease: [0.22, 1, 0.36, 1] }}
         >
@@ -56,7 +56,7 @@ export function AdminAccessLanding({ publicConfig }: { publicConfig: PublicConfi
               </div>
               <div>
                 <p className="retro-ui text-xs uppercase tracking-[0.3em] text-primary">Operator access only</p>
-                <p className="text-sm font-medium text-foreground/70">{publicConfig.platformName}</p>
+                <p className="theme-shell-muted text-sm font-medium">{publicConfig.platformName}</p>
               </div>
             </div>
 
@@ -66,7 +66,7 @@ export function AdminAccessLanding({ publicConfig }: { publicConfig: PublicConfi
                   <h1 className="max-w-[12ch] text-5xl leading-[0.92] text-foreground sm:text-6xl">
                     Boot the cabinet before the crowd gets in.
                   </h1>
-                  <p className="max-w-3xl text-lg leading-8 text-foreground/78">
+                  <p className="theme-shell-muted max-w-3xl text-lg leading-8">
                     Wire the arena before the doors open. Set the rules, lock in accountability, and decide how competition should feel when your players hit the board.
                   </p>
                 </div>
@@ -77,20 +77,20 @@ export function AdminAccessLanding({ publicConfig }: { publicConfig: PublicConfi
                     'This setup pass decides how progress is tracked, who gets called out, and what winning looks like.',
                     'Players stay benched until you finish the checks and release the cabinet.',
                   ].map((detail, index) => (
-                    <div key={detail} className="rounded-[1.6rem] border border-white/80 bg-white/74 p-4 shadow-[0_12px_30px_rgba(83,31,52,0.06)]">
+                    <div key={detail} className="theme-shell-card rounded-[1.6rem] p-4">
                       <p className="retro-ui text-xs uppercase tracking-[0.24em] text-primary">
                         {['Mission Brief', 'House Rules', 'Launch Lock'][index]}
                       </p>
-                      <p className="mt-3 text-sm leading-7 text-foreground/76">{detail}</p>
+                      <p className="theme-shell-muted mt-3 text-sm leading-7">{detail}</p>
                     </div>
                   ))}
                 </div>
               </div>
 
-              <div className="rounded-[1.9rem] border border-white/85 bg-white/82 p-5 shadow-[0_18px_50px_rgba(83,31,52,0.10)]">
+              <div className="theme-shell-card-strong rounded-[1.9rem] p-5">
                 <p className="retro-ui text-xs uppercase tracking-[0.28em] text-primary">Operator Override</p>
                 <h2 className="mt-3 text-3xl text-foreground">Enter the admin password and keep building.</h2>
-                <p className="mt-3 text-base leading-7 text-foreground/72">
+                <p className="theme-shell-muted mt-3 text-base leading-7">
                   No spectators, no side doors, no early logins. The admin is the only one allowed into the cabinet before launch.
                 </p>
 
@@ -104,7 +104,7 @@ export function AdminAccessLanding({ publicConfig }: { publicConfig: PublicConfi
                       id="adminAccessPassword"
                       type="password"
                       autoComplete="current-password"
-                      className="border-primary/25 bg-white/90 text-foreground placeholder:text-foreground/45"
+                      className="theme-shell-input border-primary/25 placeholder:text-[color:var(--overlaySoft)]"
                       placeholder="Enter admin password"
                       aria-invalid={Boolean(form.formState.errors.password)}
                       {...form.register('password')}
@@ -113,7 +113,7 @@ export function AdminAccessLanding({ publicConfig }: { publicConfig: PublicConfi
                   <Button className="h-12 w-full rounded-xl text-base" disabled={adminAccessMutation.isPending} type="submit">
                     {adminAccessMutation.isPending ? 'Unlocking cabinet...' : 'Unlock Setup Deck'}
                   </Button>
-                  <p className="text-sm leading-6 text-foreground/68">
+                  <p className="theme-shell-soft text-sm leading-6">
                     Competition stays queued until you launch the realm.
                   </p>
                 </form>

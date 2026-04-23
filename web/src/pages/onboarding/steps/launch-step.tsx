@@ -28,7 +28,7 @@ export function LaunchStep({
         <InfoTile title="Kudos" value={`${categoriesCount}`} detail="At least one active kudos track is required." />
         <InfoTile title="Open blockers" value={`${bootstrap.setup.launchBlockers.length}`} detail="Launch checks these requirements when you click the button." />
       </div>
-      <div className="rounded-[1.5rem] border border-white/80 bg-white/74 p-4 shadow-[0_12px_28px_rgba(83,31,52,0.06)]">
+      <div className="theme-shell-card rounded-[1.5rem] p-4">
         <p className="retro-ui text-sm uppercase tracking-[0.22em] text-primary">Systems Check</p>
         <div className="mt-4 space-y-3">
           <RequirementRow done={bootstrap.setup.requirements.identityConfigured} label="Identity, theme, and sign-in surface saved" />
@@ -37,7 +37,7 @@ export function LaunchStep({
           <RequirementRow done={bootstrap.setup.requirements.hasAttribute} label="At least one active kudos track" />
         </div>
         {bootstrap.setup.launchBlockers.length > 0 ? (
-          <div className="mt-4 space-y-2 text-sm text-foreground/70">
+          <div className="theme-shell-muted mt-4 space-y-2 text-sm">
             {bootstrap.setup.launchBlockers.map((blocker) => (
               <p key={blocker}>{blocker}</p>
             ))}
@@ -47,7 +47,7 @@ export function LaunchStep({
       {launchError.length > 0 ? (
         <div className="rounded-[1.5rem] border border-destructive/30 bg-destructive/5 p-4 text-sm text-foreground">
           <p className="font-semibold text-destructive">Finish the missing setup steps before launch.</p>
-          <div className="mt-2 space-y-1 text-foreground/74">
+          <div className="theme-shell-muted mt-2 space-y-1">
             {launchError.map((step) => (
               <p key={step}>{step}</p>
             ))}

@@ -47,14 +47,14 @@ export function RewardDetailPanel({
               {reward.icon ? ' ' : ''}
               {reward.title}
             </h2>
-            <p className="max-w-3xl text-base leading-7 text-muted-foreground">
+            <p className="theme-shell-muted max-w-3xl text-base leading-7">
               {reward.description || 'No extra details were added for this reward yet.'}
             </p>
           </div>
-          <div className="rounded-[1.5rem] border border-white/60 bg-white/70 p-4 shadow-sm">
-            <p className="text-sm text-muted-foreground">Availability</p>
+          <div className="theme-shell-card rounded-[1.5rem] p-4">
+            <p className="theme-shell-muted text-sm">Availability</p>
             <p className="mt-1 text-xl font-semibold capitalize">{reward.status}</p>
-            <p className="mt-2 text-sm text-muted-foreground">
+            <p className="theme-shell-muted mt-2 text-sm">
               {reward.cooldownEndsAt
                 ? `Ready in ${formatCountdown(reward.cooldownEndsAt, now)}`
                 : `Cooldown ${reward.cooldownDays} day(s)`}
@@ -70,7 +70,7 @@ export function RewardDetailPanel({
               <CardHeader>
                 <CardTitle>Latest reward status</CardTitle>
               </CardHeader>
-              <CardContent className="space-y-2 text-sm text-muted-foreground">
+              <CardContent className="theme-shell-muted space-y-2 text-sm">
                 <p>Purchased {formatDateTime(purchase.purchasedAt)}</p>
                 <p>Status: {purchase.status}</p>
                 {purchase.redeemedAt ? <p>Redeemed {formatDateTime(purchase.redeemedAt)}</p> : null}
@@ -91,7 +91,7 @@ export function RewardDetailPanel({
             ) : (
               <Button className="w-full" disabled variant="secondary">Cooling down</Button>
             )}
-            <div className="rounded-2xl border border-border/70 bg-background px-4 py-3 text-sm text-muted-foreground">
+            <div className="theme-shell-card rounded-2xl px-4 py-3 text-sm theme-shell-muted">
               Costs are taken immediately when you buy the reward.
             </div>
           </CardContent>

@@ -36,9 +36,9 @@ export function LoginExpandableMessage({
   const { hasOverflow, previewText, overflowText } = useMemo(() => splitMessageByWordLimit(text), [text])
 
   return (
-    <div className="space-y-4 rounded-[1.5rem] border border-[color:var(--login-hero-panel-border)] bg-[color:var(--login-hero-panel-surface)] p-4 shadow-[0_18px_50px_rgba(49,24,38,0.08)] backdrop-blur-sm sm:p-5 xl:border-white/70 xl:bg-white/50">
+    <div className="space-y-4 rounded-[1.5rem] border border-[color:var(--login-hero-panel-border)] bg-[color:var(--login-hero-panel-surface)] p-4 shadow-[0_18px_50px_var(--overlayShadow)] backdrop-blur-sm sm:p-5 xl:border-[color:var(--overlayBorder)] xl:bg-[color:var(--overlaySurfaceSoft)]">
       <div className="max-h-[19rem] overflow-y-auto pr-1 sm:max-h-[22rem] sm:pr-2">
-        <p className="whitespace-pre-line text-base leading-7 text-[var(--login-hero-muted)] sm:text-lg sm:leading-8 xl:text-foreground/76">
+        <p className="whitespace-pre-line text-base leading-7 text-[var(--login-hero-muted)] sm:text-lg sm:leading-8 xl:text-[color:var(--overlayMuted)]">
           {previewText}
           <AnimatePresence initial={false}>
             {expanded && hasOverflow ? (

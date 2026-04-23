@@ -55,7 +55,7 @@ export function LoginHeroPanel({
   return (
     <motion.section
       animate={{ opacity: 1, y: 0 }}
-      className={`relative overflow-hidden rounded-[2rem] border border-white/80 bg-[linear-gradient(135deg,rgba(255,255,255,0.86),rgba(255,255,255,0.72))] p-6 shadow-[0_25px_80px_rgba(83,31,52,0.14),0_45px_120px_rgba(83,31,52,0.12)] backdrop-blur sm:p-8 lg:p-10 ${preview ? 'h-full' : ''}`}
+      className={`theme-shell-panel relative overflow-hidden rounded-[2rem] p-6 sm:p-8 lg:p-10 ${preview ? 'h-full' : ''}`}
       initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 18 }}
       style={heroToneStyle as CSSProperties}
       transition={{ duration: shouldReduceMotion ? 0 : 0.4, ease: [0.22, 1, 0.36, 1] }}
@@ -74,7 +74,7 @@ export function LoginHeroPanel({
       <div className="relative z-10 flex h-full min-h-[21rem] flex-col gap-7 sm:min-h-[24rem] xl:min-h-0">
         <button
           type="button"
-          className="inline-flex w-fit items-center gap-3 rounded-full border border-primary/20 bg-white/76 px-3 py-2 text-left shadow-[0_8px_24px_rgba(83,31,52,0.08)] backdrop-blur"
+          className="theme-shell-pill inline-flex w-fit items-center gap-3 rounded-full px-3 py-2 text-left"
           onBlur={() => setEyebrowExpanded(false)}
           onClick={() => setEyebrowExpanded((current) => !current)}
           onFocus={() => setEyebrowExpanded(true)}
@@ -82,7 +82,7 @@ export function LoginHeroPanel({
           onMouseLeave={() => setEyebrowExpanded(false)}
         >
           <span className="retro-ui text-[0.65rem] uppercase tracking-[0.28em] text-primary">Press Start</span>
-          <span className={`overflow-hidden whitespace-nowrap text-sm font-medium text-foreground/74 transition-all duration-200 ${eyebrowExpanded ? 'max-w-xs opacity-100' : 'max-w-0 opacity-0'}`}>
+          <span className={`theme-shell-soft overflow-hidden whitespace-nowrap text-sm font-medium transition-all duration-200 ${eyebrowExpanded ? 'max-w-xs opacity-100' : 'max-w-0 opacity-0'}`}>
             {platformName}
           </span>
         </button>
@@ -100,7 +100,7 @@ export function LoginHeroPanel({
         {hasHeroImage ? (
           <button
             type="button"
-            className="group relative hidden overflow-hidden rounded-[1.8rem] border border-white/85 bg-white/72 p-3 text-left shadow-[0_20px_60px_rgba(83,31,52,0.09)] transition hover:-translate-y-1 xl:block"
+            className="theme-shell-card group relative hidden overflow-hidden rounded-[1.8rem] p-3 text-left transition hover:-translate-y-1 xl:block"
             onClick={onOpenZoom}
           >
             <img
@@ -109,10 +109,10 @@ export function LoginHeroPanel({
               loading="lazy"
               src={heroImageUrl}
             />
-            <div className="pointer-events-none absolute inset-x-6 bottom-6 flex items-center justify-between rounded-[1.25rem] border border-white/70 bg-[linear-gradient(135deg,rgba(255,255,255,0.86),rgba(255,255,255,0.68))] px-4 py-3 backdrop-blur">
+            <div className="theme-shell-panel pointer-events-none absolute inset-x-6 bottom-6 flex items-center justify-between rounded-[1.25rem] px-4 py-3">
               <div>
                 <p className="retro-ui text-[0.65rem] uppercase tracking-[0.26em] text-primary">Spotlight Frame</p>
-                <p className="mt-1 text-sm text-foreground/72">Tap or click to zoom the hero art.</p>
+                <p className="theme-shell-soft mt-1 text-sm">Tap or click to zoom the hero art.</p>
               </div>
               <span className="flex size-10 items-center justify-center rounded-full border border-primary/20 bg-primary/10 text-primary">
                 <ZoomIn className="size-4" />

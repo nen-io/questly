@@ -939,27 +939,27 @@ export function Dashboard({ session }: DashboardProps) {
           <div className="mt-5 flex flex-col gap-6">
             <div className="min-w-0 space-y-4">
               <div className="flex flex-wrap gap-2">
-                <Badge className="rounded-full bg-white/70 px-4 py-1 text-sm text-foreground shadow-sm">
+                <Badge className="theme-shell-pill rounded-full px-4 py-1 text-sm shadow-sm">
                   {session.user.role === 'admin' ? 'Admin mode' : 'Player mode'}
                 </Badge>
-                <Badge className="rounded-full bg-white/70 px-4 py-1 text-sm text-foreground shadow-sm">
+                <Badge className="theme-shell-pill rounded-full px-4 py-1 text-sm shadow-sm">
                   {unreadNotifications} unread notifications
                 </Badge>
                 {hasLeaderboard && topLeaderboardPlayer && (
-                  <Badge className="rounded-full bg-white/70 px-4 py-1 text-sm text-foreground shadow-sm">
+                  <Badge className="theme-shell-pill rounded-full px-4 py-1 text-sm shadow-sm">
                     <Crown className="mr-2 inline size-3.5" />
                     {topLeaderboardPlayer.displayName} leads
                   </Badge>
                 )}
               </div>
               <div>
-                <p className="text-sm font-semibold uppercase tracking-[0.28em] text-muted-foreground">
+                <p className="theme-shell-muted text-sm font-semibold uppercase tracking-[0.28em]">
                   {session.platform.platformName}
                 </p>
                 <h1 className="text-3xl leading-tight sm:text-5xl">
                   {session.platform.content.dashboardTitle}
                 </h1>
-                <p className="mt-3 max-w-3xl text-base leading-7 text-muted-foreground sm:text-lg">
+                <p className="theme-shell-muted mt-3 max-w-3xl text-base leading-7 sm:text-lg">
                   {session.platform.content.dashboardMessage}
                 </p>
               </div>
@@ -970,7 +970,7 @@ export function Dashboard({ session }: DashboardProps) {
               <motion.div
                 key={item.label}
                 animate={{ opacity: 1, y: 0 }}
-                className="min-w-[14rem] rounded-[1.5rem] border border-white/60 bg-white/70 px-5 py-4 backdrop-blur md:min-w-0"
+                className="theme-shell-card min-w-[14rem] rounded-[1.5rem] px-5 py-4 md:min-w-0"
                 initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 14 }}
                 transition={{
                   duration: shouldReduceMotion ? 0 : 0.28,
@@ -982,7 +982,7 @@ export function Dashboard({ session }: DashboardProps) {
                 <div className="flex min-h-[6rem] flex-col justify-between">
                   <div className="space-y-3">
                     <item.icon className="size-5 text-primary" />
-                    <p className="text-sm leading-5 text-muted-foreground">{item.label}</p>
+                    <p className="theme-shell-muted text-sm leading-5">{item.label}</p>
                   </div>
                   <p className="retro-numeric pt-3 text-2xl leading-none font-semibold">{item.value}</p>
                 </div>

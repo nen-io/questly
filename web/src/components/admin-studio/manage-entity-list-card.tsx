@@ -81,7 +81,7 @@ export function ManageEntityListCard({
             <div className="flex flex-wrap items-center justify-between gap-3">
               <div className="flex items-start gap-3">
                 <div
-                  className="flex size-12 shrink-0 items-center justify-center rounded-2xl border border-white/70 bg-white/80 text-xl shadow-sm"
+                  className="theme-shell-icon flex size-12 shrink-0 items-center justify-center rounded-2xl text-xl"
                   style={item.color ? { boxShadow: `inset 0 0 0 2px ${item.color}` } : undefined}
                 >
                   <span className="emoji-glyph">{item.icon || '•'}</span>

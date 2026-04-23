@@ -46,14 +46,14 @@ export function TaskDetailPanel({
               {task.icon ? ' ' : ''}
               {task.title}
             </h2>
-            <p className="max-w-3xl text-base leading-7 text-muted-foreground">
+            <p className="theme-shell-muted max-w-3xl text-base leading-7">
               {task.description || 'No extra details were added for this quest yet.'}
             </p>
           </div>
-          <div className="rounded-[1.5rem] border border-white/60 bg-white/70 p-4 shadow-sm">
-            <p className="text-sm text-muted-foreground">Status</p>
+          <div className="theme-shell-card rounded-[1.5rem] p-4">
+            <p className="theme-shell-muted text-sm">Status</p>
             <p className="mt-1 text-xl font-semibold capitalize">{task.status}</p>
-            <p className="mt-2 text-sm text-muted-foreground">
+            <p className="theme-shell-muted mt-2 text-sm">
               {task.status === 'active' && task.dueAt
                 ? `Expires in ${formatCountdown(task.dueAt, now)}`
                 : task.status === 'cooldown' && task.cooldownEndsAt
@@ -81,7 +81,7 @@ export function TaskDetailPanel({
             ) : (
               <Button className="w-full" disabled variant="secondary">Cooling down</Button>
             )}
-            <div className="rounded-2xl border border-border/70 bg-background px-4 py-3 text-sm text-muted-foreground">
+            <div className="theme-shell-card rounded-2xl px-4 py-3 text-sm theme-shell-muted">
               {task.expiresInHours
                 ? `This quest gives players ${formatTaskExpiryWindow(task.expiresInHours)} to finish each active run.`
                 : 'This quest stays active until you finish it.'}

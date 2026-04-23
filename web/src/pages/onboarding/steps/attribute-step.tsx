@@ -44,21 +44,21 @@ export function AttributeStep({
             {isCreating ? 'Creating...' : 'Create kudos track'}
           </Button>
         </div>
-        <div className="space-y-3 rounded-[1.5rem] border border-white/80 bg-white/74 p-4 shadow-[0_12px_28px_rgba(83,31,52,0.06)]">
+        <div className="theme-shell-card space-y-3 rounded-[1.5rem] p-4">
           <p className="retro-ui text-sm uppercase tracking-[0.22em] text-primary">Live Stats</p>
           {categories.length > 0 ? categories.map((category) => (
-            <div key={category.id} className="rounded-2xl border border-white/80 bg-white/88 px-4 py-3">
+            <div key={category.id} className="theme-shell-card-strong rounded-2xl px-4 py-3">
               <div className="flex items-start justify-between gap-3">
                 <div className="flex items-center gap-3">
                   <span
-                    className="flex size-9 items-center justify-center rounded-full border border-white/80 text-sm shadow-sm"
+                    className="theme-shell-icon flex size-9 items-center justify-center rounded-full text-sm"
                     style={{ backgroundColor: category.color, color: '#fff' }}
                   >
                     {category.icon || '•'}
                   </span>
                   <div>
                     <p className="font-semibold text-foreground">{category.name}</p>
-                    <p className="text-xs text-foreground/58">{category.color}</p>
+                    <p className="theme-shell-soft text-xs">{category.color}</p>
                   </div>
                 </div>
                 <div className="flex flex-wrap gap-2">
@@ -82,13 +82,13 @@ export function AttributeStep({
                   </Button>
                 </div>
               </div>
-              <p className="text-sm text-foreground/68">{category.description || 'No description yet.'}</p>
+              <p className="theme-shell-muted text-sm">{category.description || 'No description yet.'}</p>
             </div>
           )) : (
-            <p className="text-sm text-foreground/70">No active kudos tracks yet. Create one to unlock Launch.</p>
+            <p className="theme-shell-muted text-sm">No active kudos tracks yet. Create one to unlock Launch.</p>
           )}
           {categories.length > 0 ? (
-            <p className="text-xs text-foreground/60">
+            <p className="theme-shell-soft text-xs">
               Editing a kudos track here only changes its display name, icon, and color. Quests, rewards, and balances stay attached by kudos track ID.
             </p>
           ) : null}

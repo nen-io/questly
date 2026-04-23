@@ -557,7 +557,7 @@ export function OnboardingShell() {
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,color-mix(in_srgb,var(--foreground)_5%,transparent)_1px,transparent_1px),linear-gradient(0deg,color-mix(in_srgb,var(--foreground)_5%,transparent)_1px,transparent_1px)] bg-[length:28px_28px]" />
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_bottom,transparent_0%,rgba(255,255,255,0.1)_49%,transparent_51%,transparent_100%)] bg-[length:100%_6px] opacity-20" />
       <div className="relative mx-auto flex min-h-screen max-w-7xl flex-col px-4 py-5 sm:px-6 lg:px-8">
-        <header className="flex flex-wrap items-center justify-between gap-3 rounded-[1.75rem] border border-white/80 bg-[linear-gradient(135deg,rgba(255,255,255,0.88),rgba(255,255,255,0.76))] px-4 py-4 shadow-[0_14px_40px_rgba(83,31,52,0.08)] backdrop-blur">
+        <header className="theme-shell-panel flex flex-wrap items-center justify-between gap-3 rounded-[1.75rem] px-4 py-4">
           <div>
             <p className="retro-ui text-xs uppercase tracking-[0.3em] text-primary">{bootstrap.settings.platformName}</p>
             <h1 className="text-xl text-foreground">{activeMeta.label}</h1>
@@ -596,8 +596,8 @@ export function OnboardingShell() {
           </AnimatePresence>
         </div>
 
-        <footer className="flex flex-wrap items-center justify-between gap-3 rounded-[1.5rem] border border-white/80 bg-[linear-gradient(135deg,rgba(255,255,255,0.86),rgba(255,255,255,0.74))] px-4 py-4 shadow-[0_14px_40px_rgba(83,31,52,0.08)] backdrop-blur">
-          <div className="text-sm text-foreground/70">
+        <footer className="theme-shell-panel flex flex-wrap items-center justify-between gap-3 rounded-[1.5rem] px-4 py-4">
+          <div className="theme-shell-muted text-sm">
             {activeMeta.optional ? 'Save keeps you on this step. Use Skip to leave it empty for now, or Next if you just want to keep moving.' : 'Save keeps you on this step. Use Next only when you are ready to move on.'}
           </div>
           <div className="flex flex-wrap gap-3">

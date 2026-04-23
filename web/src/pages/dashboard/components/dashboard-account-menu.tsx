@@ -57,26 +57,26 @@ export function DashboardAccountMenu({
     <div ref={menuRef} className="relative">
       <motion.button
         type="button"
-        className="group flex items-center gap-3 rounded-full border border-white/70 bg-white/72 px-3 py-2 text-left shadow-[0_12px_30px_rgba(15,23,42,0.08)] backdrop-blur transition hover:bg-white/84"
+        className="theme-shell-pill group flex items-center gap-3 rounded-full px-3 py-2 text-left transition"
         whileHover={shouldReduceMotion ? undefined : { y: -2, scale: 1.01 }}
         whileTap={shouldReduceMotion ? undefined : { scale: 0.985 }}
         onClick={() => setOpen((current) => !current)}
       >
         <AvatarCircle avatarAsset={avatarAsset} avatarUrl={avatarUrl} name={displayName} sizeClassName="size-10" />
         <div className="min-w-0">
-          <p className={`text-[0.68rem] uppercase tracking-[0.22em] text-muted-foreground transition ${open ? 'text-primary' : 'group-hover:text-foreground/78'}`}>
+          <p className={`theme-shell-muted text-[0.68rem] uppercase tracking-[0.22em] transition ${open ? '!text-primary' : 'group-hover:text-[color:var(--overlayForeground)]'}`}>
             {role === 'player' ? 'Player deck' : 'Admin deck'}
           </p>
           <p className="max-w-[10rem] truncate text-sm font-semibold text-foreground">{displayName}</p>
         </div>
-        <ChevronDown className={`size-4 text-muted-foreground transition ${open ? 'rotate-180 text-foreground' : 'group-hover:text-foreground'}`} />
+        <ChevronDown className={`theme-shell-muted size-4 transition ${open ? 'rotate-180 !text-[color:var(--overlayForeground)]' : 'group-hover:text-[color:var(--overlayForeground)]'}`} />
       </motion.button>
 
       <AnimatePresence>
         {open ? (
           <motion.div
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            className="absolute right-0 top-full z-20 mt-3 w-64 rounded-[1.35rem] border border-white/80 bg-[linear-gradient(180deg,rgba(255,255,255,0.95),rgba(255,255,255,0.82))] p-2 shadow-[0_20px_60px_rgba(15,23,42,0.16)] backdrop-blur"
+            className="theme-shell-panel absolute right-0 top-full z-20 mt-3 w-64 rounded-[1.35rem] p-2"
             exit={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: -6, scale: 0.98 }}
             initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: -8, scale: 0.98 }}
             transition={{ duration: shouldReduceMotion ? 0 : 0.18, ease: [0.22, 1, 0.36, 1] }}
@@ -94,7 +94,7 @@ export function DashboardAccountMenu({
               </span>
               <span>
                 <span className="block text-sm font-semibold text-foreground">{settingsLabel}</span>
-                <span className="block text-xs leading-5 text-muted-foreground">Email, notifications, and account controls.</span>
+                <span className="theme-shell-muted block text-xs leading-5">Email, notifications, and account controls.</span>
               </span>
             </button>
             <button
@@ -106,12 +106,12 @@ export function DashboardAccountMenu({
                 onLogout()
               }}
             >
-              <span className="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-full bg-foreground/6 text-foreground">
+              <span className="theme-shell-icon mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-full">
                 <LogOut className="size-4" />
               </span>
               <span>
                 <span className="block text-sm font-semibold text-foreground">{isLoggingOut ? 'Logging out...' : 'Log out'}</span>
-                <span className="block text-xs leading-5 text-muted-foreground">Leave the cabinet and return to sign-in.</span>
+                <span className="theme-shell-muted block text-xs leading-5">Leave the cabinet and return to sign-in.</span>
               </span>
             </button>
           </motion.div>
