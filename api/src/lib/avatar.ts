@@ -4,6 +4,7 @@ import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
 import sharp from 'sharp';
 import type { AvatarAssetRef } from '../../../shared/contracts';
 import { HttpError } from './http';
+import { forceHttpsMediaUrl } from './mediaUrl';
 import { getS3RuntimeConfig } from './s3Config';
 
 const avatarPrefix = (process.env.S3_AVATAR_PREFIX || 'avatars').replace(/^\/+|\/+$/g, '');
@@ -123,8 +124,8 @@ export const signAvatarStorageKey = async (storageKey: string | null | undefined
         return null;
     }
 
-    return getSignedUrl(client, new GetObjectCommand({
+    return forceHttpsMediaUrl(await getSignedUrl(client, new GetObjectCommand({
         Bucket: bucketName,
         Key: storageKey,
-    }), { expiresIn: signedUrlExpirySeconds });
+    }), { expiresIn: signedUrlExpirySeconds }));
 };

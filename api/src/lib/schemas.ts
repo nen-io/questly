@@ -26,6 +26,7 @@ import type {
 import { onboardingSteps } from '../../../shared/contracts';
 import { contentMediaSourcePattern, hexColorPattern, httpUrlPattern, imageDataUrlPattern, keyPattern, slugPattern, usernamePattern, videoDataUrlPattern } from '../../../shared/utils/validation';
 import { HttpError } from './http';
+import { forceHttpsMediaUrl } from './mediaUrl';
 
 const controlCharactersPattern = /[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g;
 const collapsibleWhitespacePattern = /[^\S\r\n]+/g;
@@ -47,6 +48,7 @@ const sanitizePlainText = (value: string, multiline = false) => {
 };
 
 const sanitizePassword = (value: string) => value.replace(controlCharactersPattern, '').trim();
+const sanitizeOptionalMediaUrl = (value: string | null | undefined) => forceHttpsMediaUrl(value);
 
 const coerceOptionalBoolean = (value: unknown) => {
     if (typeof value === 'boolean') {
@@ -219,8 +221,8 @@ const loginImageSchema = z.union([z.string(), z.null(), z.undefined()])
             return null;
         }
 
-        const sanitized = value.trim();
-        return sanitized.length > 0 ? sanitized : null;
+        const sanitized = sanitizeOptionalMediaUrl(value);
+        return sanitized && sanitized.length > 0 ? sanitized : null;
     })
     .refine(
         (value) => value === null
@@ -236,8 +238,8 @@ const loginBackgroundImageSchema = z.union([z.string(), z.null(), z.undefined()]
             return null;
         }
 
-        const sanitized = value.trim();
-        return sanitized.length > 0 ? sanitized : null;
+        const sanitized = sanitizeOptionalMediaUrl(value);
+        return sanitized && sanitized.length > 0 ? sanitized : null;
     })
     .refine(
         (value) => value === null
@@ -253,8 +255,8 @@ const loginBackgroundVideoSchema = z.union([z.string(), z.null(), z.undefined()]
             return null;
         }
 
-        const sanitized = value.trim();
-        return sanitized.length > 0 ? sanitized : null;
+        const sanitized = sanitizeOptionalMediaUrl(value);
+        return sanitized && sanitized.length > 0 ? sanitized : null;
     })
     .refine(
         (value) => value === null
@@ -270,8 +272,8 @@ const loginBackgroundImageSourceSchema = z.union([z.string(), z.null(), z.undefi
             return null;
         }
 
-        const sanitized = value.trim();
-        return sanitized.length > 0 ? sanitized : null;
+        const sanitized = sanitizeOptionalMediaUrl(value);
+        return sanitized && sanitized.length > 0 ? sanitized : null;
     })
     .refine(
         (value) => value === null
@@ -287,8 +289,8 @@ const loginBackgroundVideoSourceSchema = z.union([z.string(), z.null(), z.undefi
             return null;
         }
 
-        const sanitized = value.trim();
-        return sanitized.length > 0 ? sanitized : null;
+        const sanitized = sanitizeOptionalMediaUrl(value);
+        return sanitized && sanitized.length > 0 ? sanitized : null;
     })
     .refine(
         (value) => value === null

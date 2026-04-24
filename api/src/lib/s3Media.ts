@@ -8,6 +8,7 @@ import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
 import multer from 'multer';
 import sharp from 'sharp';
 import type { TaskRunMediaAssetRef } from '../../../shared/contracts';
+import { forceHttpsMediaUrl } from './mediaUrl';
 import { getS3RuntimeConfig } from './s3Config';
 
 const allowedMimeTypes = new Set([
@@ -372,14 +373,14 @@ export const getSignedDownloadUrl = async (
     },
 ) => {
     const { bucketName, client, signedUrlExpirySeconds } = await ensureS3Configured();
-    return getSignedUrl(client, new GetObjectCommand({
+    return forceHttpsMediaUrl(await getSignedUrl(client, new GetObjectCommand({
         Bucket: bucketName,
         Key: storageKey,
         ResponseContentDisposition: options?.downloadFileName
             ? buildDownloadContentDisposition(options.downloadFileName)
             : undefined,
         ResponseContentType: options?.responseContentType ?? undefined,
-    }), { expiresIn: signedUrlExpirySeconds });
+    }), { expiresIn: signedUrlExpirySeconds }))!;
 };
 
 export const signTaskRunMediaItem = async (item: {

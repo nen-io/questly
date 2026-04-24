@@ -3,6 +3,7 @@ import { db } from '../db/client';
 import { contentBlocks, realmSettings, themePresets } from '../db/schema';
 import { resolveFontPreset } from '../../../shared/font-presets';
 import { buildContentMediaAssetRef, signContentMediaSource } from './contentMedia';
+import { forceHttpsMediaUrl } from './mediaUrl';
 import { defaultContent } from './theme-presets';
 
 export const listContentBlocks = async (realmId: number) => {
@@ -24,7 +25,9 @@ export const listContentBlocks = async (realmId: number) => {
         fontPresetKey: map.font_preset_key || defaultContent.fontPresetKey,
         loginTitle: map.login_title || defaultContent.loginTitle,
         loginMessage: map.login_message || defaultContent.loginMessage,
-        loginImageUrl: map.login_image_url || defaultContent.loginImageUrl,
+        // Normalize stored external branding media so existing realms move onto
+        // HTTPS without needing a manual database cleanup.
+        loginImageUrl: forceHttpsMediaUrl(map.login_image_url || defaultContent.loginImageUrl),
         loginBackgroundImageUrl,
         loginBackgroundImageSource,
         loginBackgroundImageAsset: buildContentMediaAssetRef('login_background_image', loginBackgroundImageSource),

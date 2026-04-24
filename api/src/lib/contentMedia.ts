@@ -4,6 +4,7 @@ import multer from 'multer';
 import sharp from 'sharp';
 import type { ContentMediaAssetRef, ContentMediaSlot, UploadLoginBackgroundMediaResponse } from '../../../shared/contracts';
 import { HttpError } from './http';
+import { forceHttpsMediaUrl } from './mediaUrl';
 import { getSignedDownloadUrl } from './s3Media';
 import { getS3RuntimeConfig } from './s3Config';
 
@@ -128,7 +129,7 @@ export const signContentMediaSource = async (value: string | null | undefined) =
 
     const storageKey = getStorageKeyFromContentMediaSource(trimmedValue);
     if (!storageKey) {
-        return trimmedValue;
+        return forceHttpsMediaUrl(trimmedValue);
     }
 
     return getSignedDownloadUrl(storageKey);
