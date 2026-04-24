@@ -68,6 +68,15 @@ services:
       dockerfile: api/Dockerfile
     restart: always
     environment: *api-environment
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - >-
+          node -e "const http=require('http'); const req=http.get('http://127.0.0.1:'+(process.env.PORT||3000)+'/health',(res)=>process.exit(res.statusCode===200?0:1)); req.on('error',()=>process.exit(1)); req.setTimeout(5000,()=>{req.destroy();process.exit(1);});"
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
     depends_on:
       postgres:
         condition: service_healthy
@@ -81,10 +90,17 @@ services:
       args:
         VITE_API_URL: ${VITE_API_URL:-/api}
     restart: always
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q -O /dev/null http://127.0.0.1/ || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
     expose:
       - "80"
     depends_on:
-      - api
+      api:
+        condition: service_healthy
 
 volumes:
   postgres_data:
