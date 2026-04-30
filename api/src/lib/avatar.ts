@@ -5,6 +5,7 @@ import sharp from 'sharp';
 import type { AvatarAssetRef } from '../../../shared/contracts';
 import { HttpError } from './http';
 import { forceHttpsMediaUrl } from './mediaUrl';
+import { logWarn, serializeError } from './logger';
 import { getS3RuntimeConfig } from './s3Config';
 
 const avatarPrefix = (process.env.S3_AVATAR_PREFIX || 'avatars').replace(/^\/+|\/+$/g, '');
@@ -119,13 +120,27 @@ export const deleteAvatarStorageKey = async (storageKey: string | null | undefin
 };
 
 export const signAvatarStorageKey = async (storageKey: string | null | undefined) => {
-    const { bucketName, client, isConfigured, signedUrlExpirySeconds } = await getS3RuntimeConfig();
-    if (!storageKey || !isConfigured || !client || !bucketName) {
+    if (!storageKey) {
         return null;
     }
 
-    return forceHttpsMediaUrl(await getSignedUrl(client, new GetObjectCommand({
-        Bucket: bucketName,
-        Key: storageKey,
-    }), { expiresIn: signedUrlExpirySeconds }));
+    try {
+        const { bucketName, client, isConfigured, signedUrlExpirySeconds } = await getS3RuntimeConfig();
+        if (!isConfigured || !client || !bucketName) {
+            return null;
+        }
+
+        return forceHttpsMediaUrl(await getSignedUrl(client, new GetObjectCommand({
+            Bucket: bucketName,
+            Key: storageKey,
+        }), { expiresIn: signedUrlExpirySeconds }));
+    } catch (error) {
+        // Session bootstrap should not fail just because optional avatar media
+        // storage is unavailable or misconfigured in production.
+        logWarn('avatar.sign.failed', {
+            storageKey,
+            error: serializeError(error),
+        });
+        return null;
+    }
 };
